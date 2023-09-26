@@ -1,0 +1,63 @@
+{% extends "layout-2.html" %}
+
+{% block title %}
+    My Liberation Notes | Noting
+{% endblock %}
+
+{% block main %}
+<div class="noting">
+    <div class="note-page-write">
+        <form class="note-area" action="/resubmit" method="post">
+            <div>
+                <label style="font-weight: bold;">Title</label>
+                <input style="border-radius: 8px;" id="title" name="title" class="title" value="{{ title }}" type="text">
+            </div>
+            <div style="margin-top: 10px">
+                <label style="font-weight: bold; border-radius: 16px;">Main Text</label>
+                <textarea style="border-radius: 8px;" id="text-area" name="text-area">{{ content }}</textarea>
+                <input type="hidden" name="note_id" value="{{ note_id }}">
+                <button type="submit">Resubmit</button>
+            </div>
+        </form>
+        <form style="margin: 5px 10px 5px 10px;" action="/delete" method="post">
+            <input type="hidden" name="title-hidden" value="{{ title }}">
+            <input type="hidden" name="content-hidden" value="{{ content }}">
+            <input type="hidden" name="date-hidden" value="{{ date }}">
+            <input type="hidden" name="time-hidden" value="{{ time }}">
+            <button type="submit">Delete</button>
+        </form>
+    </div>
+    <div class="noting-help">
+        <div class="noting-help-content">
+            <h4>Principles:<span>&#x1F609</span></h4>
+            <div>
+                <p>
+                    Do not pretend to be HAPPY<br>
+                    Do not pretent to be HARD<br>
+                    Always be HONEST to yourself<br>
+                </p>
+            </div>
+            <div>
+                <h5>Not sure how to do? <span>&#127912</span></h5>
+            <p>Maybe you can ask yourself:</p>
+            <ul>
+                <li>What aspect do I want to liberate from?</li>
+                <li>What things are trapping you?</li>
+                <li>What are the reasons of it?</li>
+                <li>What is the real problem of it?</li>
+                <li>What do you hope for?</li>
+            </ul>
+            <h5>Don't worry if you cannot answer these questions</h5>
+            <p>You can also start to write:</p>
+            <ul>
+                <li>Note of inspring things you met</li>
+                <li>Emotion Note</li>
+                <li>Life experience Note</li>
+                <li>Observation Note</li>
+                <li>In total, Note down your honesty and liberation journey!</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

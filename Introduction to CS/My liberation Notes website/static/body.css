@@ -1,0 +1,195 @@
+.my-nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #F5EEDE;
+    text-decoration: none;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+}
+
+.my-nav-link:hover {
+    color: #A52A2A
+}
+
+.about-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.about-paragraph {
+    width: 50%;
+    padding: 0 25px 0 30px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: bookmania, serif;
+}
+
+.noting {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.noting-area {
+    margin: 10px 10px 10px 10px;
+    width: 48%;
+}
+
+.noting-write {
+    padding: 0px 20px 0px 20px;
+}
+
+.note-page-write {
+    padding: 0px 20px 0px 20px;
+    width: 50%;
+}
+
+.note-area {
+    margin: 10px 10px 10px 10px;
+}
+
+.noting-help {
+    margin-top: 30px;
+    width: 20%;
+    height: 739px;
+}
+
+.noting-help-content {
+    background-color: #FFDAB9;
+    border-radius: 32px;
+    font-size: 16px;
+    font-weight: 900;
+    font-family: bookmania, serif;
+    padding: 15px 15px 15px 15px;
+}
+
+.list-groups {
+    width: 50%;
+}
+
+.my-notes-header {
+    text-align: center;
+    margin: 50px 0 50px 0;
+}
+
+.my-notes-h1 {
+    font-weight: 900;
+    font-family: mina, serif;
+    color: #A52A2A;
+}
+
+.div-list-groups {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.button-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.discover-help {
+    margin-top: 30px;
+    background-color: #FFDAB9;
+    font-family: bookmania, serif;
+    border-radius: 32px;
+    width: 20%;
+    padding: 10px 10px 10px 10px;
+}
+
+.discover-main {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.discover-box {
+    width: 50%;
+    background-color: white;
+    margin: 30px 0 0 30px;
+    border-radius: 16px;
+}
+
+.discover-innerbox {
+    margin: 20px 10px 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #C39C75;
+}
+
+a:hover {
+    color: #A52A2A;
+}
+
+button {
+    background-color: #C39C75;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+}
+
+button:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+body {
+    background-color: #F5EEDE;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    text-align: center;
+    color: #C39C75;
+}
+
+.login-input {
+    border-radius: 8px;
+    width: 250px;
+    height: 30px;
+}
+
+#prniciple {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+    color: #A52A2A;
+    font-style: normal;
+}
+
+#title {
+    width: 100%;
+    font-size: 25px;
+}
+
+#text-area {
+    width: 100%;
+    height: 729px;
+    font-size: 18px;
+}
+
+#discovery-principle {
+    text-align: center;
+    font-weight: bold;
+}
+
+#error {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

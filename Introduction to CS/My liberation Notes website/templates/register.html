@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Liberation Notes | Register
+{% endblock %}
+
+{% block main %}
+    {% if judge == True %}
+    <div class="alert alert-warning alert-dismissible fade show" style="text-align: center;" role="alert">
+        You've <strong>Registered Successfully!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endif %}
+    <form action="/register" method="post" width="100%" class="login">
+        <img class="home-image" id="logo" alt="logopicture" src="../static/logo.png" width="250px" hight="50px">
+        <div>
+            <input class="login-input" autofocus autocomplete="off" placeholder="Username" name="username" type="text">
+        </div>
+        <div>
+            <input class="login-input" autofocus autocomplete="off" placeholder="Password" name="password" type="password">
+        </div>
+        <div>
+            <input class="login-input" autofocus autocomplete="off" placeholder="Password Confirmation" name="confirmation" type="password">
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    My Liberation Notes | Login
+{% endblock %}
+
+{% block main %}
+    <form action="/login" method="post" width="100%" class="login">
+        <img class="home-image" id="logo" alt="logopicture" src="../static/logo.png" width="250px" hight="50px">
+        <div>
+            <input class="login-input" autofocus autocomplete="off" placeholder="Username" name="username" type="text">
+        </div>
+        <div>
+            <input class="login-input" autofocus autocomplete="off" placeholder="Password" name="password" type="password">
+        </div>
+        <div>
+            <button type="submit">Log in</button>
+        </div>
+    </form>
+{% endblock %}

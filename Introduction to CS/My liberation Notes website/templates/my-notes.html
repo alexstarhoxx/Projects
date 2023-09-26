@@ -1,0 +1,32 @@
+{% extends "layout-2.html" %}
+
+{% block title %}
+    My Liberation Notes | My Notes
+{% endblock %}
+
+{% block main %}
+    <header class="my-notes-header">
+        <h1 class="my-notes-h1">My Notes, My Journey</h1>
+    </header>
+    {% for data in data %}
+    <form action="/note-page" method="post">
+        <div class="list-group div-list-groups">
+            <button type="submit" class="list-groups list-group-item list-group-item-action">
+                <div class="button-title">
+                    <div>
+                        <input type="hidden" name="title" value="{{ data.title }}">
+                        <input type="hidden" name="note_id" value="{{ data.note_id }}">
+                        {{ data["title"] }}
+                    </div>
+                    <div>
+                        <input type="hidden" name="date" value="{{ data.date }}">
+                        <input type="hidden" name="time" value="{{ data.time }}">
+                        {{ data["date"] }}
+                        {{ data["time"] }}
+                    </div>
+                </div>
+            </button>
+        </div>
+    </form>
+    {% endfor %}
+{% endblock %}

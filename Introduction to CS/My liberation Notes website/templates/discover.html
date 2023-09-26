@@ -1,0 +1,32 @@
+{% extends "layout-2.html" %}
+
+{% block title %}
+    My Liberation Notes | Discover
+{% endblock %}
+
+{% block main %}
+    <div class="discover-main">
+        <div class="discover-help">
+            <div>
+                <h4>Discovery Principles</h4>
+                <p>
+                    Here you may find people who may in the same or similar difficult situation.
+                    In order to let everyone write their notes comfortably and relaxingly, Please:
+                </p>
+                <p id="discovery-principle">Do not try to comfort others<br>
+                Do not try to give suggestions<br>
+                Just read other's notes</p>
+                <p style="font-size: 18px; color: #A52A2A; font-weight: bolder;"><span>&#x1F609</span>You can see other notes by refreshing this page~~ </p>
+            </div>
+        </div>
+        <div class="discover-box">
+            <div class="discover-innerbox">
+                <p> 👶ID: {{ person_id }}</p>
+                <h4>{{ title }}</h4>
+                <p>
+                    {{ content }}
+                </p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
