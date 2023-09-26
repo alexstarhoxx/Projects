@@ -1,0 +1,102 @@
+# A test for status command's Untracked Files section
+I definitions.inc
+> init
+<<<
+
+# Test for files present in the working directory but neither staged for addtion nor tracked
++ wug.txt wug.txt
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+wug.txt
+
+<<<*
+> add wug.txt
+<<<
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+wug.txt
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+> commit "added wug"
+<<<
++ notwug.txt notwug.txt
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+notwug.txt
+
+<<<*
+> add notwug.txt
+<<<
+> commit "added notwug.txt"
+<<<
++ applewug.txt applewug.txt
+> add applewug.txt
+<<<
+> commit apple
+<<<
+
+# Test for files that've been staged for removal but then re-created without Gitlet knowledge
+> rm notwug.txt
+<<<
+* notwug.txt
+E applewug.txt
+E wug.txt
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+notwug.txt
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
++ notwug.txt whywug.txt
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+notwug.txt
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+notwug.txt
+
+<<<*
+
+# Passed

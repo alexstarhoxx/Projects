@@ -1,0 +1,13 @@
+# A test for common failure cases, not failure cases specified by each command
+>
+Please enter a command.
+<<<
+> initialize
+No command with that name exists.
+<<<
+> status
+Not in an initialized Gitlet directory.
+<<<
+> init gitlet
+Incorrecct operands.
+<<<

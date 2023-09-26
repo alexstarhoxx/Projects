@@ -1,0 +1,25 @@
+# This test aims to test init command
+# To check init command, it should test if it set up persistence correctly
+I definitions.inc
+> init
+<<<
+E .gitlet
+> init
+A Gitlet version-control system already exists in the current directory.
+<<<
+E .gitlet
+E .gitlet/commits
+E .gitlet/pointers
+E .gitlet/blobs
+* .gitlet/objects
+* .gitlet/pointers/water_beans
+> log
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+I cleanStatus-1.inc
+
+
+# Passed

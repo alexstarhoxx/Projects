@@ -1,0 +1,59 @@
+# This test is to fix bugs appearing in checkout command after submitting gradescope
+I setup2.inc
+I definitions.inc
++ Dog.txt whywug.txt
++ Cat.txt notwug.txt
+> add Dog.txt
+<<<
+> add Cat.txt
+<<<
+> commit "Dry the dog and the cat"
+<<<
++ Dog.txt treewug.txt
+
+# This command should be invalid.
+> checkout (( Dog.txt
+Incorrect operands.
+<<<
+
+# This command should valid!
+> checkout -- Dog.txt
+<<<
+= Dog.txt whywug.txt
+
+# Each ${COMMIT_HEAD} captures its commit UID.
+> log
+===
+${COMMIT_HEAD}
+Dry the dog and the cat
+
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+# UID of second commit
+D UID2 "${1}"
+# UID of first commit (not the initial one)
+D UID1 "${2}"
+
+# This command should be invalid!
+> checkout ${UID1} ++ Cat.txt
+Incorrect operands.
+<<<
+
+# This command should be invalid!
+> checkout ${UID1} 66 Cat.txt
+Incorrect operands.
+<<<
+
+# This command should be valid.
+> checkout ${UID1} -- Cat.txt
+<<<
+= Cat.txt applewug.txt
+
+# Passed

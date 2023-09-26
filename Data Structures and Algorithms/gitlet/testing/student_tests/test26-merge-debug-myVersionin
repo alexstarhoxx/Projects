@@ -1,0 +1,52 @@
+# After handing in gradescope, there is a unpassed test for merge
+# In order to find the bug, write a similar test
+I definitions.inc
+> init
+<<<
+
++ f.txt wug.txt
++ g.txt notwug.txt
+> add f.txt
+<<<
+> add g.txt
+<<<
+> commit "Two files"
+<<<
+
+> branch other
+<<<
+
++ h.txt whywug.txt
++ f.txt whywug.txt
+> add h.txt
+<<<
+> add f.txt
+<<<
+> rm g.txt
+<<<
+> commit "Add h, remove g and change f"
+<<<
+
+> checkout other
+<<<
+
++ f.txt notwug.txt
++ k.txt treewug.txt
+> add k.txt
+<<<
+> add f.txt
+<<<
+> commit "Add k and change f"
+<<<
+
+> checkout master
+<<<
+
+> merge other
+Encountered a merge conflict.
+<<<
+
+* g.txt
+= h.txt whywug.txt
+= k.txt treewug.txt
+= f.txt f-conflict.txt

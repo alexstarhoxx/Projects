@@ -1,0 +1,15 @@
+# A test for a scenario where split point is the given commit
+I definitions.inc
+I setup2.inc
+
+> branch other
+<<<
++ Cat.txt pearwug.txt
+> add Cat.txt
+<<<
+> commit "change cat"
+<<<
+
+> merge other
+Given branch is an ancestor of the current branch.
+<<<

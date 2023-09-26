@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+why we use wug as an example?
+=======
+This is not a wug.
+>>>>>>>

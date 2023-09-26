@@ -1,0 +1,35 @@
+# A test for find command
+I definitions.inc
+> init
+<<<
++ wug.txt wug.txt
+> add wug.txt
+<<<
+# First time
+> commit "added wug"
+<<<
++ notwug.txt notwug.txt
+> add notwug.txt
+<<<
+# Second time
+> commit "added wug"
+<<<
++ whywug.txt whywug.txt
+> add whywug.txt
+<<<
+> commit "added wug."
+<<<
++ wug.txt whywug.txt
+> add wug.txt
+<<<
+# Third time
+> commit "added wug"
+<<<
+> find "added wug"
+${ARBLINES}
+<<<*
+> log
+${COMMIT_LOG}
+<<<*
+
+# Passed

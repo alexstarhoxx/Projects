@@ -1,0 +1,24 @@
+# A test for merge command casusing conflict where the file is absent at the
+# split point and has different contents in the given and current branches.
+I definitions.inc
+I merge-setup2.inc
+
++ iu.txt iu.txt
+> add iu.txt
+<<<
+> commit "added iu"
+<<<
+
+> checkout other
+<<<
++ iu.txt +iu.txt
+> add iu.txt
+<<<
+> commit "add I love you IU"
+<<<
+
+> merge master
+Encountered a merge conflict.
+<<<
+
+= iu.txt iu-conflict.txt

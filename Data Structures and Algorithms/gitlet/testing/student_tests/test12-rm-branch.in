@@ -1,0 +1,20 @@
+# A test for testing rm-branch command
+I definitions.inc
+I branch-setup.inc
+> checkout cool-beans
+<<<
+> rm-branch cool-ham
+A branch with that name does not exist.
+<<<
+> rm-branch cool-beans
+Cannot remove the current branch.
+<<<
+
+> checkout master
+<<<
+> rm-branch cool-beans
+<<<
+* .gitlet/pointers/cool-beans
+> checkout cool-beans
+No such branch exists.
+<<<

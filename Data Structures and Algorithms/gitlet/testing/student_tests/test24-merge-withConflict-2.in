@@ -1,0 +1,21 @@
+# A test for merge command casusing conflict
+# where the contents of one are changed and the other file is deleted.
+I definitions.inc
+I merge-setup2.inc
+
+> checkout other
+<<<
+> rm a.txt
+<<<
+> commit "remove a"
+<<<
+
+> checkout master
+<<<
+
+> merge other
+Encounter a merge conflict.
+<<<
+
+= c.txt change-conflict.txt
+= a.txt applewug-conflict.txt

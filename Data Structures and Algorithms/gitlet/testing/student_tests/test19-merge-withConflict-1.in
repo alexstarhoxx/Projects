@@ -1,0 +1,40 @@
+# A test for merge command casusing conflict
+# where the contents of both are changed and different from other
+I definitions.inc
+I merge-setup2.inc
+
+# Small tests for failure cases
+> merge othre
+A branch with that name does not exist.
+<<<
+> merge master
+Cannot merge a branch with itself.
+<<<
++ hi.txt wug.txt
+> add hi.txt
+<<<
+> merge other
+You have uncommitted changes.
+<<<
+> commit "added hi"
+<<<
+> rm hi.txt
+<<<
+> merge other
+You have uncommitted changes.
+<<<
+> commit "remove hi"
+<<<
+
+> merge other
+Encounter a merge conflict.
+<<<
+
+= a.txt !applewug.txt
+= p.txt !pearwug.txt
+= t.txt treewug.txt
+* o.txt
+* n.txt
+= why.txt whywug.txt
+= w.txt wug.txt
+= c.txt change-conflict.txt

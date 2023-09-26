@@ -1,0 +1,16 @@
+        switch (command) {
+            case "¡ü" :
+                command = "Up";
+                break;
+            case "¡ú" :
+                command = "Right";
+                break;
+            case "¡ý" :
+                command = "Down";
+                break;
+            case "¡û" :
+                command = "Left";
+                break;
+            default :
+                break;
+        }

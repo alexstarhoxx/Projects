@@ -1,0 +1,25 @@
+# A test for a scenario where split point is the current commit
+I definitions.inc
+I setup2.inc
+
+> branch other
+<<<
+
+> checkout other
+<<<
+
++ Cat.txt pearwug.txt
+> add Cat.txt
+<<<
+> commit "change cat"
+<<<
+
+> merge other
+Cannot merge a branch with itself.
+<<<
+
+> checkout master
+<<<
+> merge other
+Current branch fast-forwarded.
+<<<

@@ -1,0 +1,120 @@
+# This test is to test branch command and checkout [branch name] command
+I definitions.inc
+I setup2.inc
++ Dog.txt notwug.txt
+> add Dog.txt
+<<<
+> commit "Dog will not be a wug"
+<<<
+
+# Test branch command
+> branch cool-beans
+<<<
+E .gitlet/pointers/cool-beans
+> status
+=== Branches ===
+cool-beans
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+
+# Check the failure case of branch command
+> branch cool-beans
+A branch with that name already exists.
+<<<
+
+# Check checkout [branch name] command and the first 2 failure cases of it
+> checkout cool-ham
+No such branch exists.
+<<<
+> checkout cool-beans
+<<<
+> checkout cool-beans
+No need to checkout the current branch.
+<<<
+> status
+=== Branches ===
+\*cool-beans
+master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+
+# At this time, cool-beans branch should have Maths.txt, master branch should not have.
++ Maths.txt treewug.txt
+> add Maths.txt
+<<<
+> commit "added maths"
+<<<
+E Maths.txt
+= Dog.txt notwug.txt
+
+> checkout master
+<<<
+* Maths.txt
+= Dog.txt notwug.txt
+
+# At this time, master branch should have English.txt, cool-beans branch should not have.
+# Additionally, master branch should have new content for Cat.txt, cool-beans branch should not have
++ Cat.txt pearwug.txt
++ English.txt whywug.txt
+> add Cat.txt
+<<<
+> add English.txt
+<<<
+> commit "Modify Cat and add English"
+<<<
+
+> checkout cool-beans
+<<<
+* English.txt
+E Maths.txt
+= Cat.txt applewug.txt
+= Dog.txt notwug.txt
+
+> checkout master
+<<<
+E English.txt
+* Maths.txt
+= Cat.txt pearwug.txt
+= Dog.txt notwug.txt
+
+# Check the last failure cases of checkout [branch name] command
++ annoying.txt wug.txt
+> add annoying.txt
+<<<
+> checkout cool-beans
+<<<
+E annoying.txt
+> status
+=== Branches ===
+\*cool-beans
+master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+annoying.txt
+
+<<<*
+
+# Passed

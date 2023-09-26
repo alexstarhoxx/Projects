@@ -1,0 +1,43 @@
+# A test for shortened ids
+# Each ${HEADER} captures an abbreviation of its full commit UID.
+# With high probability, it is unique.
+D HEADER "commit ([a-f0-9]{15})[a-f0-9]+"
+D DATE "Date: \w\w\w \w\w\w \d+ \d\d:\d\d:\d\d \d\d\d\d [-+]\d\d\d\d"
+I definitions.inc
+I setup2.inc
++ Dog.txt notwug.txt
++ Cat.txt pearwug.txt
+> add Dog.txt
+<<<
+> add Cat.txt
+<<<
+> commit "Change dog and cat"
+<<<
+> log
+===
+${HEADER}
+${DATE}
+Change dog and cat
+
+===
+${HEADER}
+${DATE}
+Rain A Cat and A Dog
+
+===
+${HEADER}
+${DATE}
+initial commit
+
+<<<*
+
+D RACAD "${2}"
+
+> checkout "${RACAD}" -- Dog.txt
+<<<
+= Dog.txt wug.txt
+= Cat.txt pearwug.txt
+> checkout "${RACAD}" -- Cat.txt
+<<<
+= Dog.txt wug.txt
+= Cat.txt applewug.txt

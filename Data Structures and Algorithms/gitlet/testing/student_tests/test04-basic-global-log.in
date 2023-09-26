@@ -1,0 +1,24 @@
+# A test for global-log command
+I definitions.inc
+> init
+<<<
++ wug.txt wug.txt
+> add wug.txt
+<<<
+> commit "added wug text"
+<<<
++ notwug.txt notwug.txt
+> add notwug.txt
+<<<
+> commit "added notwug text"
+<<<
++ whywug.txt whywug.txt
+> add whywug.txt
+<<<
+> commit "added whywug text"
+<<<
+> global-log
+${COMMIT_LOG}
+<<<*
+
+# Passed

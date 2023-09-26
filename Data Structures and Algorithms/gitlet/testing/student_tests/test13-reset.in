@@ -1,0 +1,116 @@
+# A test for reset command
+I definitions.inc
+I branch-setup.inc
+> log
+===
+${COMMIT_HEAD}
+Modify Cat and add English
+
+===
+${COMMIT_HEAD}
+Dog will not be a wug
+
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+
+D UID1 "${1}"
+D UID2 "${2}"
+D UID3 "${3}"
+D UID4 "${4}"
+
+> reset "${UID3}"
+<<<
+> log
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+> status
+=== Branches ===
+cool-beans
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+
+> checkout cool-beans
+<<<
+> log
+===
+${COMMIT_HEAD}
+added maths
+
+===
+${COMMIT_HEAD}
+Dog will not be a wug
+
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+
+D RACAD "${3}"
+D NOTWUG "${2}"
+
++ orange.txt applewug.txt
+> add orange.txt
+<<<
+> reset "${NOTWUG}"
+<<<
+> status
+=== Branches ===
+\*cool-beans
+master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+orange.txt
+
+<<<*
+
+> reset "${RACAD}"
+<<<
+> status
+=== Branches ===
+\*cool-beans
+master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+orange.txt
+
+<<<*

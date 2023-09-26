@@ -1,0 +1,47 @@
+# A test for global-log command when having 2 branches
+I definitions.inc
+I branch-setup.inc
+> global-log
+${COMMIT_LOG}
+<<<*
+> log
+===
+${COMMIT_HEAD}
+Modify Cat and add English
+
+===
+${COMMIT_HEAD}
+Dog will not be a wug
+
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+
+> checkout cool-beans
+<<<
+> log
+===
+${COMMIT_HEAD}
+added maths
+
+===
+${COMMIT_HEAD}
+Dog will not be a wug
+
+===
+${COMMIT_HEAD}
+Rain A Cat and A Dog
+
+===
+${COMMIT_HEAD}
+initial commit
+
+<<<*
+
+# Passed

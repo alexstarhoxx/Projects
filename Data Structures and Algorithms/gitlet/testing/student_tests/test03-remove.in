@@ -1,0 +1,83 @@
+# A test for remove command
+I definitions.inc
+> init
+<<<
++ wug.txt wug.txt
+> add wug.txt
+<<<
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+wug.txt
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+
+# Unstage the file if it is currently staged for addition.
+> rm wug.txt
+<<<
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+wug.txt
+
+<<<*
+> commit "added wug.txt"
+No changes added to the commit.
+<<<
+
+# If the file is tracked in the current commit, stage it
+# for removal and remove the file from the working directory
+# if the user has not already done so.
++ wug.txt wug.txt
+> add wug.txt
+<<<
+> commit "added wug.txt"
+<<<
+> rm wug.txt
+<<<
+> status
+=== Branches ===
+\*master
+
+=== Staged Files ===
+
+=== Removed Files ===
+wug.txt
+
+=== Modifications Not Staged For Commit ===
+
+=== Untracked Files ===
+
+<<<*
+* wug.txt
++ whywug.txt whywug.txt
+> add whywug.txt
+<<<
+> commit "added whywug.txt, where is wug.txt?"
+<<<
+
+# Test failure cases
+> rm wug.txt
+No reason to remove the file.
+<<<
+> rm notwug.txt
+No reason to remove the file.
+<<<
+
+# Passed

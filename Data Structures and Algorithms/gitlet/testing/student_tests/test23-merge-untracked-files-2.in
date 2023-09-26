@@ -1,0 +1,23 @@
+# A test for testing one of the failure cases of untracked files(overwritten version)
+I definitions.inc
+I merge-setup2.inc
+
+> checkout other
+<<<
+
++ untracked.txt applewug.txt
+> add untracked.txt
+<<<
+> commit "added untracked"
+<<<
+
+> checkout master
+<<<
+
++ untracked.txt !applewug.txt
+> merge other
+There is an untracked file in the way; delete it, or add and commit it first.
+<<<
+
+- untracked.txt
+I cleanStatus-2.inc

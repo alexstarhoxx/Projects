@@ -1,0 +1,11 @@
+# A test for testing one of the failure cases of untracked files(deleted version)
+I definitions.inc
+I merge-setup2.inc
+
++ n.txt pearwug.txt
+> merge other
+There is an untracked file in the way; delete it, or add and commit it first.
+<<<
+
+- n.txt
+I cleanStatus-2.inc
