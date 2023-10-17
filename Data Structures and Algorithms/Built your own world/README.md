@@ -1,5 +1,7 @@
 # BYOW Design Document
 
+> This is a project originated from Project 3 of CS61B, University of California, Berkeley. The specification can be seen from [this linked](https://sp21.datastructur.es/materials/proj/proj3/proj3). 
+
 **Name**: Alex Ho
 
 ## Classes and Data Structures
@@ -72,19 +74,22 @@ This class is to create a object to help us detect whether a specific tile in th
 
 
 ## Algorithms
+
+The generated map consists of rooms, hallways and turning hallways. The interactivity includes avatar, a small new game and encounter. You can find the corresponding classes and their methods specification on the `Core` directory or the following parts.
+
 ### MapGenerator
 1. `public void generate()` 
 * Initially generate a room with random width and height at random position of center of the world. A golden-colored wall generated randomly on 4-side walls of the room. 
 * Then, let the room connect hallways or turning hallways randomly from 4 sides from it and continuously extend the paths of created rooms, hallways and turning hallways until these are not able to be created(drawn out of the world or overlap with each other) and the whole path is closed.
-2. `public void roomConnector(Rooms room, boolean closed)`
+2. `public void roomConnector(Rooms room)`
 * For ROOM, it will be the host and other components(hallways and turning walls) must connect to it randomly from its sides. 
-* If any connection is not able to be created, CLOSED will become true. Otherwise it will be false; 
+* If any connection is not able to be created, instance variable CLOSED will become true. Otherwise it will be false; 
 * If CLOSED is true from the beginning, do not make any connection and return directly.
-3. `public void hwConnector(hallways hw, boolean closed)`
+3. `public void hwConnector(hallways hw)`
 * For HW, it will be the host and a room must connect to it randomly from its unconnected side. 
 * If any connection is not able to be created, CLOSED will become true. Otherwise it will be false.
 * If CLOSED is true from the beginning, do not make any connection and return directly.
-4. `public void thwConnector(TurningHallways thw, boolean closed)`
+4. `public void thwConnector(TurningHallways thw)`
 * For THW, it will be the host and a room must connect to it randomly from its unconnected side. 
 * If any connection is not able to be created, CLOSED will become true. Otherwise it will be false. 
 * If CLOSED is true from the beginning, do not make any connection and return directly.
@@ -181,7 +186,6 @@ Randomly choose a side to add the golden wall. At each side, it will randomly ch
 
 #### Draw a Hallway in the World
 1. `public void draw()`
-
 Based the direction of a hallway, draw it by calling the private helper methods `drawTwoSidesWallsXDir`, `drawTwoSidesWallsYDir` and `drawOneLineFloorsYDir`. The previous two methods will draw the same-length two sides walls of the hallway based on the position and direction. The third method will draw a line of floor between these two sides walls with the same length.
 
 #### Connect a Room to the Hallway
@@ -218,3 +222,74 @@ If neither these situations happen, the hallway will be considered to be drawn o
 * The bottom of the vertical hallway is drawn out of the world.
 2. `public boolean isOverlap()`
 This method implementation is similar with `Rooms` one. Except it check all the tiles within the hallway.
+
+### Turning Hallways
+The shape of a turning hallway can be one of the shapes shown as follows:
+* "L" shape <p>
+  #X# <br>
+  #X# <br>
+  #X##### <br>
+  #XXXXXX <br>
+  P###### <br>
+
+* "Reversed L" shape <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#X# <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#X# <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#X# <br>
+ #####X# <br>
+ XXXXXX# <br>
+ P###### <br>
+
+* "7" shape <br>
+    \####### <br>
+    XXXXXX# <br>
+    \#####X# <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#X# <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PX# <br>
+* "Reversed 7" shape <br>
+    \######## <br>
+    #XXXXXXX <br>
+    \#X###### <br>
+    #X# <br>
+    PX#
+
+**Note that All "P"s on these shapes represents its corresponding position.**
+
+#### Draw a Turning Hallway in the World
+1. `public void drawXXXX()` Draw a turning hallway based on its instance variable `shape` and `position` on the world. Each turning hallway is drawn by drawing a horizon and a vertical `Hallway` first and connect them together in accordance with its own shape. <br>
+**Note that "XXXX" here refers to one of the 4 shapes**
+
+#### Connect a Room to a Drawn Turning Hallway
+1. `public boolean connectWith(Rooms room)` Connect a room to a drawn turning hallway based on the `shape` of this turning hallway. 
+There will have 4 cases here: 
+* 'L' shape: The room should either be connected on top of the turning hallway, or the right side of it.
+* 'Reversed L' shape: The room should either be connected on top of the turning hallway, or the left side of it.
+* '7' shape: The room should either be connected on bottom of the turning hallway, or the left side of it.
+* 'Reversed 7' shape: The room should either be connected on bottom of the turning hallway, or the right side of it.
+If the room can not be drawn on these above senario, do nothing and return variable `closed` which indicates whether this turning hallway can be connected to other components. 
+
+2. `isConnectedDDDSSS()` 'DDD' refers to 'direction', which can be left, right, top and bottom; 'SSS' refers to 'shape' of this turnin g hallway. The implementation of this set of methods are very similar. Take `isConnectedRightL()` as an example:
+* The method tends to check if the right side of this L shaped turning hallway has already been connected with room or a hallway.
+*   #X# <br>
+  #X# <br>
+  #X#####C1 <br>
+  #XXXXXXC2 <br>
+  #######C3 <br>
+As for this given turning hallway, this method will check whether the position of C1 and C3 is a wall and position of C2 is a floor. If these 3 conditions are fulfilled at the same time, it will return ture. Otherwise, return false.
+
+3. `public boolean conDDDSSSWith(Rooms room)` 'DDD' refers to 'direction', which can be left, right, top and bottom; 'SSS' refers to the 'shape' of this turning hallway. The implementation of this set of methods are very similar. Take `conTopL()` as an example:
+* This method tends to connect a room to the drawn turning hallway.
+* Firstly, it will create a random number ranged from 0 to room's width minus 2 in order to let this turning hallway be connected to a random place of bottom side of the room.
+* Based on the random number, determine a new position of the room and change `room`'s instance variable `position` to the new position.
+* Check if the room is going to be out of the map or overlap other components if it is drawn. If it is, make this turning hallway the top floor become a wall (to become closed) by calling closedTopL() and return true. **Note that for this step, isOutOfMap() should really be ahead of isOverlap() method because only if the room to be drawn within the map will it overlaps other drawn components which are alreadly drawn in the map**
+* If it can be drawn, draw the given room.
+* Based on this turning hallway's position, find out the position of the wall needed to be digged out to a floor, calling `digWallToFloor(int x, int y)` in order to successfully connect room and turning hallway. Return false indicating that this connection successed and the map has not closed yet.
+
+#### Check if a Turning Hallway is Overlapped or ouf of the World
+
+4. `public boolean isOverlap()` Check if this turning hallway overlaps other drawn components in the world if it is drawn. Though it has several private methods, their implementation principles are the same. They all use instance variable `detector` who will call `isDrawn(int x, int y)` method to check whether position (x, y) has drawn. If positions of every floors and every walls of this turning hallway has not been drawn yet, it indicates that this turning hallway does not overlap other drawn components. Otherwise, it overlaps.
+
+5. `public boolean isOutOfWorld()` Check if this turning hallway will be drawn out of the world based on its position and shape. This method will be used when a turning hallway attempt to connect with a drawn room. It will return if any sides of the turning hallway is drawn out of one of the 4 sides of the world.
+
+6. `public boolean closeDDDSSS()` 'DDD' refers to 'direction', which can be left, right, top and bottom; 'SSS' refers to the 'shape' of this turning hallway. The implementation of this set of methods are very similar. Take `closeTopL()` as an example:
+* It will turn the top floor into a wall to make top of this turning wall encapsulated. 

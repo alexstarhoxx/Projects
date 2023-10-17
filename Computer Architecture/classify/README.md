@@ -1,3 +1,4 @@
-# 61C Fall 2022 Project 2: CS61Classify
+# Classification of handwritten digits
+This is a project originated from Project 2 of CS61C, University of California, Berkeley.
 
-Spec: [https://cs61c.org/fa22/projects/proj2/](https://cs61c.org/fa22/projects/proj2/)
+The specification can be seen from [this linked](https://inst.eecs.berkeley.edu/~cs61c/fa22/projects/proj2/).

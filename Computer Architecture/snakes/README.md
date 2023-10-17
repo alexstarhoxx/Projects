@@ -1,3 +1,4 @@
-# 61C Fall 2022 Project 1: snek
+# Snakes Game
+This is a project originated from Project 1 of CS61C, University of California, Berkeley.
 
-Spec: [https://cs61c.org/fa22/projects/proj1/](https://cs61c.org/fa22/projects/proj1/)
+The specification can be seen from [this linked](https://inst.eecs.berkeley.edu/~cs61c/fa22/projects/proj1/).
