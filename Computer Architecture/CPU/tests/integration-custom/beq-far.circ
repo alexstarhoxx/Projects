@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project source="3.8.0-61c.07e32fb" version="1.0">
+  This file is intended to be loaded by Logisim-evolution v3.8.0-61c.07e32fb(https://github.com/61c-teach/logisim-evolution).
+
+  <lib desc="#Wiring" name="0">
+    <tool name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="fanout" val="4"/>
+      <a name="incoming" val="4"/>
+    </tool>
+    <tool name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="radix" val="16"/>
+    </tool>
+    <tool name="Tunnel">
+      <a name="width" val="2"/>
+    </tool>
+    <tool name="Pull Resistor">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Clock">
+      <a name="facing" val="north"/>
+    </tool>
+    <tool name="Constant">
+      <a name="value" val="0xff"/>
+      <a name="width" val="8"/>
+    </tool>
+    <tool name="Bit Extender">
+      <a name="in_width" val="32"/>
+      <a name="out_width" val="8"/>
+    </tool>
+  </lib>
+  <lib desc="#Gates" name="1">
+    <tool name="NOT Gate">
+      <a name="facing" val="south"/>
+    </tool>
+    <tool name="Buffer">
+      <a name="width" val="3"/>
+    </tool>
+    <tool name="AND Gate">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="NAND Gate">
+      <a name="size" val="30"/>
+    </tool>
+    <tool name="XNOR Gate">
+      <a name="size" val="30"/>
+    </tool>
+    <tool name="Odd Parity">
+      <a name="facing" val="south"/>
+      <a name="inputs" val="3"/>
+    </tool>
+    <tool name="Controlled Inverter">
+      <a name="size" val="20"/>
+    </tool>
+  </lib>
+  <lib desc="#Plexers" name="2">
+    <tool name="Decoder">
+      <a name="enable" val="false"/>
+    </tool>
+    <tool name="BitSelector">
+      <a name="group" val="8"/>
+      <a name="width" val="32"/>
+    </tool>
+  </lib>
+  <lib desc="#Arithmetic" name="3">
+    <tool name="Adder">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Subtractor">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Multiplier">
+      <a name="width" val="1"/>
+    </tool>
+    <tool name="Divider">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Negator">
+      <a name="width" val="1"/>
+    </tool>
+    <tool name="Comparator">
+      <a name="width" val="16"/>
+    </tool>
+    <tool name="Shifter">
+      <a name="width" val="16"/>
+    </tool>
+  </lib>
+  <lib desc="#Memory" name="4"/>
+  <lib desc="#Base" name="5">
+    <tool name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
+  </lib>
+  <lib desc="file#../../harnesses/cpu-harness.circ" name="6"/>
+  <main name="run_main"/>
+  <options>
+    <a name="gateUndefined" val="ignore"/>
+    <a name="simlimit" val="1000"/>
+    <a name="simrand" val="0"/>
+  </options>
+  <mappings>
+    <tool lib="5" map="Button2" name="Menu Tool"/>
+    <tool lib="5" map="Button3" name="Menu Tool"/>
+    <tool lib="5" map="Ctrl Button1" name="Menu Tool"/>
+  </mappings>
+  <toolbar>
+    <tool lib="5" name="Poke Tool"/>
+    <tool lib="5" name="Edit Tool"/>
+    <tool lib="5" name="Wiring Tool"/>
+    <tool lib="5" name="Text Tool">
+      <a name="font" val="SansSerif plain 12"/>
+    </tool>
+    <sep/>
+    <tool lib="0" name="Pin"/>
+    <tool lib="0" name="Pin">
+      <a name="facing" val="west"/>
+      <a name="output" val="true"/>
+    </tool>
+    <sep/>
+    <tool lib="1" name="NOT Gate"/>
+    <tool lib="1" name="AND Gate"/>
+    <tool lib="1" name="OR Gate"/>
+    <tool lib="1" name="XOR Gate"/>
+    <tool lib="1" name="NAND Gate"/>
+    <tool lib="1" name="NOR Gate"/>
+    <sep/>
+    <tool lib="4" name="D Flip-Flop"/>
+    <tool lib="4" name="Register"/>
+  </toolbar>
+  <circuit name="run_main">
+    <a name="appearance" val="logisim_evolution"/>
+    <a name="circuit" val="run_main"/>
+    <a name="clabelfont" val="SansSerif plain 12"/>
+    <a name="simulationFrequency" val="1.0"/>
+    <comp lib="0" loc="(1000,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="a0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1070,760)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="label" val="RequestedInstruction"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1130,760)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1140,660)" name="Tunnel">
+      <a name="label" val="Instruction"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(1310,790)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(1580,820)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="TimeStep"/>
+      <a name="output" val="true"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1630,980)" name="Constant">
+      <a name="value" val="0x7"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="0" loc="(1750,970)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="halt"/>
+      <a name="output" val="true"/>
+    </comp>
+    <comp lib="0" loc="(190,300)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(200,860)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="label" val="clk"/>
+    </comp>
+    <comp lib="0" loc="(200,890)" name="Clock">
+      <a name="facing" val="north"/>
+    </comp>
+    <comp lib="0" loc="(250,270)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="Instruction"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(370,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="ra"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(460,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="sp"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(470,710)" name="Probe">
+      <a name="appearance" val="classic"/>
+      <a name="radix" val="16"/>
+    </comp>
+    <comp lib="0" loc="(480,610)" name="Tunnel">
+      <a name="facing" val="east"/>
+      <a name="label" val="ProgramCounter"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(500,610)" name="Splitter">
+      <a name="appear" val="center"/>
+      <a name="bit0" val="none"/>
+      <a name="bit1" val="none"/>
+      <a name="bit10" val="0"/>
+      <a name="bit11" val="0"/>
+      <a name="bit12" val="0"/>
+      <a name="bit13" val="0"/>
+      <a name="bit14" val="0"/>
+      <a name="bit15" val="0"/>
+      <a name="bit16" val="none"/>
+      <a name="bit17" val="none"/>
+      <a name="bit18" val="none"/>
+      <a name="bit19" val="none"/>
+      <a name="bit2" val="0"/>
+      <a name="bit20" val="none"/>
+      <a name="bit21" val="none"/>
+      <a name="bit22" val="none"/>
+      <a name="bit23" val="none"/>
+      <a name="bit24" val="none"/>
+      <a name="bit25" val="none"/>
+      <a name="bit26" val="none"/>
+      <a name="bit27" val="none"/>
+      <a name="bit28" val="none"/>
+      <a name="bit29" val="none"/>
+      <a name="bit3" val="0"/>
+      <a name="bit30" val="none"/>
+      <a name="bit31" val="none"/>
+      <a name="bit4" val="0"/>
+      <a name="bit5" val="0"/>
+      <a name="bit6" val="0"/>
+      <a name="bit7" val="0"/>
+      <a name="bit8" val="0"/>
+      <a name="bit9" val="0"/>
+      <a name="fanout" val="1"/>
+      <a name="incoming" val="32"/>
+    </comp>
+    <comp lib="0" loc="(520,710)" name="Pin">
+      <a name="appearance" val="NewPins"/>
+      <a name="facing" val="west"/>
+      <a name="label" val="RequestedAddress"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(550,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(550,250)" name="Tunnel">
+      <a name="facing" val="south"/>
+      <a name="label" val="ProgramCounter"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(640,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t1"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(730,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="t2"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(820,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="s0"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="0" loc="(910,110)" name="Pin">
+      <a name="appearance" val="classic"/>
+      <a name="facing" val="south"/>
+      <a name="label" val="s1"/>
+      <a name="output" val="true"/>
+      <a name="width" val="32"/>
+    </comp>
+    <comp lib="3" loc="(1710,970)" name="Comparator">
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="4" loc="(1340,710)" name="Counter">
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="max" val="0xffff"/>
+      <a name="width" val="16"/>
+    </comp>
+    <comp lib="4" loc="(660,600)" name="ROM">
+      <a name="addrWidth" val="14"/>
+      <a name="appearance" val="logisim_evolution"/>
+      <a name="contents">addr/data: 14 32
+fea00293 fea00313 7e628ee3 100413 200413 300413 400413 500413 600413 700413 800413 900413 a00413 b00413 c00413 d00413 e00413 f00413 1000413 1100413 1200413 1300413 1400413 1500413 1600413 1700413 1800413 1900413 1a00413 1b00413 1c00413 1d00413 1e00413 1f00413 2000413 2100413 2200413 2300413 2400413 2500413 2600413 2700413 2800413 2900413 2a00413 2b00413 2c00413 2d00413 2e00413 2f00413 3000413 3100413 3200413 3300413 3400413 3500413 3600413 3700413 3800413 3900413 3a00413 3b00413 3c00413 3d00413 3e00413 3f00413 4000413 4100413 4200413 4300413 4400413 4500413 4600413 4700413 4800413 4900413 4a00413 4b00413 4c00413 4d00413 4e00413 4f00413 5000413 5100413 5200413 5300413 5400413 5500413 5600413 5700413 5800413 5900413 5a00413 5b00413 5c00413 5d00413 5e00413 5f00413 6000413 6100413 6200413 6300413 6400413 6500413 6600413 6700413 6800413 6900413 6a00413 6b00413 6c00413 6d00413 6e00413 6f00413 7000413 7100413 7200413 7300413 7400413 7500413 7600413 7700413 7800413 7900413 7a00413 7b00413 7c00413 7d00413 7e00413 7f00413 8000413 8100413 8200413 8300413 8400413 8500413 8600413 8700413 8800413 8900413 8a00413 8b00413 8c00413 8d00413 8e00413 8f00413 9000413 9100413 9200413 9300413 9400413 9500413 9600413 9700413 9800413 9900413 9a00413 9b00413 9c00413 9d00413 9e00413 9f00413 a000413 a100413 a200413 a300413 a400413 a500413 a600413 a700413 a800413 a900413 aa00413 ab00413 ac00413 ad00413 ae00413 af00413 b000413 b100413 b200413 b300413 b400413 b500413 b600413 b700413 b800413 b900413 ba00413 bb00413 bc00413 bd00413 be00413 bf00413 c000413 c100413 c200413 c300413 c400413 c500413 c600413 c700413 c800413 c900413 ca00413 cb00413 cc00413 cd00413 ce00413 cf00413 d000413 d100413 d200413 d300413 d400413 d500413 d600413 d700413 d800413 d900413 da00413 db00413 dc00413 dd00413 de00413 df00413 e000413 e100413 e200413 e300413 e400413 e500413 e600413 e700413 e800413 e900413 ea00413 eb00413 ec00413 ed00413 ee00413 ef00413 f000413 f100413 f200413 f300413 f400413 f500413 f600413 f700413 f800413 f900413 fa00413 fb00413 fc00413 fd00413 fe00413 ff00413 10000413 10100413 10200413 10300413 10400413 10500413 10600413 10700413 10800413 10900413 10a00413 10b00413 10c00413 10d00413 10e00413 10f00413 11000413 11100413 11200413 11300413 11400413 11500413 11600413 11700413 11800413 11900413 11a00413 11b00413 11c00413 11d00413 11e00413 11f00413 12000413 12100413 12200413 12300413 12400413 12500413 12600413 12700413 12800413 12900413 12a00413 12b00413 12c00413 12d00413 12e00413 12f00413 13000413 13100413 13200413 13300413 13400413 13500413 13600413 13700413 13800413 13900413 13a00413 13b00413 13c00413 13d00413 13e00413 13f00413 14000413 14100413 14200413 14300413 14400413 14500413 14600413 14700413 14800413 14900413 14a00413 14b00413 14c00413 14d00413 14e00413 14f00413 15000413 15100413 15200413 15300413 15400413 15500413 15600413 15700413 15800413 15900413 15a00413 15b00413 15c00413 15d00413 15e00413 15f00413 16000413 16100413 16200413 16300413 16400413 16500413 16600413 16700413 16800413 16900413 16a00413 16b00413 16c00413 16d00413 16e00413 16f00413 17000413 17100413 17200413 17300413 17400413 17500413 17600413 17700413 17800413 17900413 17a00413 17b00413 17c00413 17d00413 17e00413 17f00413 18000413 18100413 18200413 18300413 18400413 18500413 18600413 18700413 18800413 18900413 18a00413 18b00413 18c00413 18d00413 18e00413 18f00413 19000413 19100413 19200413 19300413 19400413 19500413 19600413 19700413 19800413 19900413 19a00413 19b00413 19c00413 19d00413 19e00413 19f00413 1a000413 1a100413 1a200413 1a300413 1a400413 1a500413 1a600413 1a700413 1a800413 1a900413 1aa00413 1ab00413 1ac00413 1ad00413 1ae00413 1af00413 1b000413 1b100413 1b200413 1b300413 1b400413 1b500413 1b600413 1b700413 1b800413 1b900413 1ba00413 1bb00413 1bc00413 1bd00413 1be00413 1bf00413 1c000413 1c100413 1c200413 1c300413 1c400413 1c500413 1c600413 1c700413 1c800413 1c900413 1ca00413 1cb00413 1cc00413 1cd00413 1ce00413 1cf00413 1d000413 1d100413 1d200413 1d300413 1d400413 1d500413 1d600413 1d700413 1d800413 1d900413 1da00413 1db00413 1dc00413 1dd00413 1de00413 1df00413 1e000413 1e100413 1e200413 1e300413 1e400413 1e500413 1e600413 1e700413 1e800413 1e900413 1ea00413 1eb00413 1ec00413 1ed00413 1ee00413 1ef00413 1f000413 1f100413 1f200413 1f300413 1f400413 1f500413 1f600413 1f700413 1f800413 1f900413 1fa00413 1fb00413 1fc00413 1fd00413 1fe00413 1ff00413 20000413 20100413 20200413 20300413 20400413 20500413 20600413 20700413 20800413 20900413 20a00413 20b00413 20c00413 20d00413 20e00413 20f00413 21000413 21100413 21200413 21300413 21400413 21500413 21600413 21700413 21800413 21900413 21a00413 21b00413 21c00413 21d00413 21e00413 21f00413 22000413 22100413 22200413 22300413 22400413 22500413 22600413 22700413 22800413 22900413 22a00413 22b00413 22c00413 22d00413 22e00413 22f00413 23000413 23100413 23200413 23300413 23400413 23500413 23600413 23700413 23800413 23900413 23a00413 23b00413 23c00413 23d00413 23e00413 23f00413 24000413 24100413 24200413 24300413 24400413 24500413 24600413 24700413 24800413 24900413 24a00413 24b00413 24c00413 24d00413 24e00413 24f00413 25000413 25100413 25200413 25300413 25400413 25500413 25600413 25700413 25800413 25900413 25a00413 25b00413 25c00413 25d00413 25e00413 25f00413 26000413 26100413 26200413 26300413 26400413 26500413 26600413 26700413 26800413 26900413 26a00413 26b00413 26c00413 26d00413 26e00413 26f00413 27000413 27100413 27200413 27300413 27400413 27500413 27600413 27700413 27800413 27900413 27a00413 27b00413 27c00413 27d00413 27e00413 27f00413 28000413 28100413 28200413 28300413 28400413 28500413 28600413 28700413 28800413 28900413 28a00413 28b00413 28c00413 28d00413 28e00413 28f00413 29000413 29100413 29200413 29300413 29400413 29500413 29600413 29700413 29800413 29900413 29a00413 29b00413 29c00413 29d00413 29e00413 29f00413 2a000413 2a100413 2a200413 2a300413 2a400413 2a500413 2a600413 2a700413 2a800413 2a900413 2aa00413 2ab00413 2ac00413 2ad00413 2ae00413 2af00413 2b000413 2b100413 2b200413 2b300413 2b400413 2b500413 2b600413 2b700413 2b800413 2b900413 2ba00413 2bb00413 2bc00413 2bd00413 2be00413 2bf00413 2c000413 2c100413 2c200413 2c300413 2c400413 2c500413 2c600413 2c700413 2c800413 2c900413 2ca00413 2cb00413 2cc00413 2cd00413 2ce00413 2cf00413 2d000413 2d100413 2d200413 2d300413 2d400413 2d500413 2d600413 2d700413 2d800413 2d900413 2da00413 2db00413 2dc00413 2dd00413 2de00413 2df00413 2e000413 2e100413 2e200413 2e300413 2e400413 2e500413 2e600413 2e700413 2e800413 2e900413 2ea00413 2eb00413 2ec00413 2ed00413 2ee00413 2ef00413 2f000413 2f100413 2f200413 2f300413 2f400413 2f500413 2f600413 2f700413 2f800413 2f900413 2fa00413 2fb00413 2fc00413 2fd00413 2fe00413 2ff00413 30000413 30100413 30200413 30300413 30400413 30500413 30600413 30700413 30800413 30900413 30a00413 30b00413 30c00413 30d00413 30e00413 30f00413 31000413 31100413 31200413 31300413 31400413 31500413 31600413 31700413 31800413 31900413 31a00413 31b00413 31c00413 31d00413 31e00413 31f00413 32000413 32100413 32200413 32300413 32400413 32500413 32600413 32700413 32800413 32900413 32a00413 32b00413 32c00413 32d00413 32e00413 32f00413 33000413 33100413 33200413 33300413 33400413 33500413 33600413 33700413 33800413 33900413 33a00413 33b00413 33c00413 33d00413 33e00413 33f00413 34000413 34100413 34200413 34300413 34400413 34500413 34600413 34700413 34800413 34900413 34a00413 34b00413 34c00413 34d00413 34e00413 34f00413 35000413 35100413 35200413 35300413 35400413 35500413 35600413 35700413 35800413 35900413 35a00413 35b00413 35c00413 35d00413 35e00413 35f00413 36000413 36100413 36200413 36300413 36400413 36500413 36600413 36700413 36800413 36900413 36a00413 36b00413 36c00413 36d00413 36e00413 36f00413 37000413 37100413 37200413 37300413 37400413 37500413 37600413 37700413 37800413 37900413 37a00413 37b00413 37c00413 37d00413 37e00413 37f00413 38000413 38100413 38200413 38300413 38400413 38500413 38600413 38700413 38800413 38900413 38a00413 38b00413 38c00413 38d00413 38e00413 38f00413 39000413 39100413 39200413 39300413 39400413 39500413 39600413 39700413 39800413 39900413 39a00413 39b00413 39c00413 39d00413 39e00413 39f00413 3a000413 3a100413 3a200413 3a300413 3a400413 3a500413 3a600413 3a700413 3a800413 3a900413 3aa00413 3ab00413 3ac00413 3ad00413 3ae00413 3af00413 3b000413 3b100413 3b200413 3b300413 3b400413 3b500413 3b600413 3b700413 3b800413 3b900413 3ba00413 3bb00413 3bc00413 3bd00413 3be00413 3bf00413 3c000413 3c100413 3c200413 3c300413 3c400413 3c500413 3c600413 3c700413 3c800413 3c900413 3ca00413 3cb00413 3cc00413 3cd00413 3ce00413 3cf00413 3d000413 3d100413 3d200413 3d300413 3d400413 3d500413 3d600413 3d700413 3d800413 3d900413 3da00413 3db00413 3dc00413 3dd00413 3de00413 3df00413 3e000413 3e100413 3e200413 3e300413 3e400413 3e500413 3e600413 3e700413 3e800413 3e900413 3ea00413 3eb00413 3ec00413 3ed00413 3ee00413 3ef00413 3f000413 3f100413 3f200413 3f300413 3f400413 3f500413 3f600413 3f700413 3f800413 3f900413 3fa00413 3fb00413 3fc00413 3fd00413 3fe00413 7d000913
+</a>
+      <a name="dataWidth" val="32"/>
+    </comp>
+    <comp lib="5" loc="(1541,697)" name="Text">
+      <a name="font" val="SansSerif plain 16"/>
+      <a name="text" val="Halts Execution After Constant # of Clock Cycles"/>
+    </comp>
+    <comp lib="5" loc="(1614,1006)" name="Text">
+      <a name="font" val="SansSerif plain 12"/>
+      <a name="text" val="Constant"/>
+    </comp>
+    <comp lib="5" loc="(787,583)" name="Text">
+      <a name="font" val="SansSerif plain 24"/>
+      <a name="text" val="Instruction Memory"/>
+    </comp>
+    <comp lib="6" loc="(530,270)" name="cpu_harness"/>
+    <wire from="(1000,110)" to="(1000,170)"/>
+    <wire from="(1070,760)" to="(1110,760)"/>
+    <wire from="(1110,660)" to="(1110,760)"/>
+    <wire from="(1110,660)" to="(1140,660)"/>
+    <wire from="(1110,760)" to="(1130,760)"/>
+    <wire from="(1310,790)" to="(1340,790)"/>
+    <wire from="(1540,820)" to="(1560,820)"/>
+    <wire from="(1560,820)" to="(1560,890)"/>
+    <wire from="(1560,820)" to="(1580,820)"/>
+    <wire from="(1560,890)" to="(1650,890)"/>
+    <wire from="(1630,980)" to="(1670,980)"/>
+    <wire from="(1650,890)" to="(1650,960)"/>
+    <wire from="(1650,960)" to="(1670,960)"/>
+    <wire from="(1710,970)" to="(1750,970)"/>
+    <wire from="(190,300)" to="(260,300)"/>
+    <wire from="(200,860)" to="(200,890)"/>
+    <wire from="(250,270)" to="(310,270)"/>
+    <wire from="(260,290)" to="(260,300)"/>
+    <wire from="(260,290)" to="(310,290)"/>
+    <wire from="(370,110)" to="(370,170)"/>
+    <wire from="(370,170)" to="(630,170)"/>
+    <wire from="(460,110)" to="(460,160)"/>
+    <wire from="(460,160)" to="(660,160)"/>
+    <wire from="(470,710)" to="(490,710)"/>
+    <wire from="(480,610)" to="(490,610)"/>
+    <wire from="(490,610)" to="(490,710)"/>
+    <wire from="(490,610)" to="(500,610)"/>
+    <wire from="(490,710)" to="(520,710)"/>
+    <wire from="(520,610)" to="(660,610)"/>
+    <wire from="(530,270)" to="(550,270)"/>
+    <wire from="(530,290)" to="(630,290)"/>
+    <wire from="(530,310)" to="(660,310)"/>
+    <wire from="(530,330)" to="(690,330)"/>
+    <wire from="(530,350)" to="(720,350)"/>
+    <wire from="(530,370)" to="(750,370)"/>
+    <wire from="(530,390)" to="(780,390)"/>
+    <wire from="(530,410)" to="(810,410)"/>
+    <wire from="(530,430)" to="(840,430)"/>
+    <wire from="(550,110)" to="(550,150)"/>
+    <wire from="(550,150)" to="(690,150)"/>
+    <wire from="(550,250)" to="(550,270)"/>
+    <wire from="(630,170)" to="(630,290)"/>
+    <wire from="(640,110)" to="(640,140)"/>
+    <wire from="(640,140)" to="(720,140)"/>
+    <wire from="(660,160)" to="(660,310)"/>
+    <wire from="(690,150)" to="(690,330)"/>
+    <wire from="(720,140)" to="(720,350)"/>
+    <wire from="(730,110)" to="(730,130)"/>
+    <wire from="(730,130)" to="(750,130)"/>
+    <wire from="(750,130)" to="(750,370)"/>
+    <wire from="(780,140)" to="(780,390)"/>
+    <wire from="(780,140)" to="(820,140)"/>
+    <wire from="(810,150)" to="(810,410)"/>
+    <wire from="(810,150)" to="(910,150)"/>
+    <wire from="(820,110)" to="(820,140)"/>
+    <wire from="(840,170)" to="(1000,170)"/>
+    <wire from="(840,170)" to="(840,430)"/>
+    <wire from="(900,660)" to="(1110,660)"/>
+    <wire from="(910,110)" to="(910,150)"/>
+  </circuit>
+</project>
