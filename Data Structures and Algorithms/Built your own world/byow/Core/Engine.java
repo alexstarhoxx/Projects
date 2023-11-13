@@ -12,6 +12,11 @@ import java.time.LocalDateTime;
 
 import static edu.princeton.cs.introcs.StdDraw.*;
 
+/**
+ * This is the whole implementation logic of this game. It implements keyboard 
+ * and input string mode respectively by using other classes within byow.Core package.
+ * @author Alex Ho
+ */
 public class Engine {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */

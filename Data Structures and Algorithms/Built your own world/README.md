@@ -5,6 +5,21 @@
 **Name**: Alex Ho
 
 ## Classes and Data Structures
+### Main
+This is the main entry point for the program. This class simply parses the command line inputs, and lets the byow.Core.Engine class take over in either keyboard or input string mode.
+
+### Engine
+This is the whole implementation logics of this game. It implements keyboard and input string mode respectively by using other classes within byow.Core package.
+
+#### Fields
+1. `TERenderer ter` - a tile renderer given by course staff within byow.TileEngine package.
+2. `private static final int WIDTH` - The width of game interface.
+3. `private static final int HEIGHT` - The height of game interface.
+4. `public static final File CWD` - The directory path of the current working directory.
+5. `public static final File AVATAR_FILE` - The file path of avatar text file which used to store state of avatar to implement persistence of the game.
+6. `public static final File ENCOUTNER_FILE` - The file path of encounter text file which used to store state of encounter to implement persistence of the game.
+---
+These following classes are all for creating a random map in the world.
 ### MapGenerator
 This class, or its correponding object is used to generate the pseudorandom map. The main idea of how to use other classes to generate the map pseudorandomly lives here.
 
@@ -13,7 +28,7 @@ This class, or its correponding object is used to generate the pseudorandom map.
 2. `private static final int hwRange` - Integer range for length of the hallways.
 3. `private static final int roomRange` - Integer range for length of height and width of rooms.
 4. `private static final int thwRange` - Integer range for respective length of horizonal hallways and vertical hallways used to create a turning hallways.
-5. `private TETile[][] world` -  A 2D array representing the world we are going to be created and rendered.
+5. `private TETile[][] world` -  A 2D array representing the world we are going to be created and rendered to display an interface of this game. Map will be drawn in this world.
 6. `private boolean closed` - Used to judge if the world is completely closed. i.e. the world can not be extended more because of the limitations of not drawing out of the edge of the world and rules of not overlapping with each other in terms of rooms, hallways and turning hallways.
 
 The `hwRange`, `roomRange` and `thwRange` are set to let the map drawn more complex.
@@ -72,10 +87,69 @@ This class is to create a object to help us detect whether a specific tile in th
 #### Fields
 `private TETile[][] world` - The world is drawn by components and that the detector is going to make detection.
 
+---
+These following classes are all for adding interactivity to the generate world.
+### Avatar
+This class is to create an object which is enable to move around freely within the generated map. It will be put in a random place within th map and can move up, down, left and right freely.
 
-## Algorithms
+#### Fields
+1. `private static final TETile LOOK = Tileset.AVATAR` - This represents the appearance of an avatar object.
+2. `private Position position` - The position of an avatar. This position should be within the generated map.
+3. `private long seed` - The long integer used to generate the pseudorandom map `world`
+4. `private TETile[][] world` -  A 2D array representing the world we are going to be created and rendered to display an interface of this game. Map will be drawn in this world.
+5. `private Detector detector` - The detector used to detect if any positions of this avatar to be placed is drawn, is a floor or is an encounter. 
 
-The generated map consists of rooms, hallways and turning hallways. The interactivity includes avatar, a small new game and encounter. You can find the corresponding classes and their methods specification on the `Core` directory or the following parts.
+### Encounter
+This class is to create an encounter that will encounter with the avatar. The encounter will be static, and will be placed randomly within the map. Once an avatar meets the encounter, a small game will be triggered.
+
+#### Fields
+1. `private static final TETile LOOK = Tileset.FLOWER` - This represents the appearance of an encounter object.
+2. `private Position position` - The position of an encounter. This position should be within the generated map.
+3. `private long seed` - The long integer used to generate the pseudorandom map `world`
+4. `private TETile[][] world` - The generated map
+5. `private Detector detector` - The detector used to detect if any positions of this encounter to be placed is drawn or is a floor.
+6. `private boolean met` - A state used to check if this encounter has met with the avatar.
+
+### Menu
+This is one of the UI elements in this game. When the user starts to play, an UI interface will be displayed first to instruct the user to start the game. 
+
+#### Fields
+1. `private int width` - The width of this interface
+2. `private int height` - The height of this interface
+3. `private static final int TILE_SIZE` - The tile size to set in order to use `StdDraw` library to draw this interface.
+4. `private String seed` - The long integer used to generate the pseudorandom map `world`
+
+### Small New Game
+This class, or its corresponding object is used to trigger a small game when the avatar meets an encounter within the generated map. The user must win this small game by picking up 10 flowers to return the generated map(The main game). It will:
+* Display a page for prompting the user what happen when the avatar meets an encounter.
+* Display the interface and interactivity of this small game.
+
+#### Fields
+1. `private long seed` - The long integer used to generate the pseudorandom map `world`
+2. `private int width` - The width of this interface
+3. `private int height` - The height of this interface
+4. `private TETile[][] world` -  A 2D array representing the world we are going to be created and rendered to display an interface of this game. Map will be drawn in this world.
+
+### InputSource
+This is an interface of `KeyboardInput` and `StringInput` classes.
+
+### Keyboard Input
+This class is used to monitor and grab input typed by users using keyboard.
+
+### String Input
+This class is used to monitor and grab the String input typed in command line by users.
+
+#### Fields
+1. `private String input` - The string input the users typed in command line.
+2. `private int index` - The indices of the string input.
+
+## Algorithms - Part 0: Main logic of algorithms
+
+
+
+## Algorithms - Part I: Generate a psedorandom map
+
+The generated map consists of rooms, hallways and turning hallways. The interactivity includes avatar, a small new game and encounter. You can find the corresponding classes and their methods specification on the `Core` directory or the following parts. **The main algorithm of creating a random map is on the `MapGenerator` class.**
 
 ### MapGenerator
 1. `public void generate()` 
@@ -182,7 +256,20 @@ This method must be used before drawing the room. Check all the tiles within the
 Randomly choose a side to add the golden wall. At each side, it will randomly choose a wall except for the ends of the side and turn it into the golden-colored wall a.k.a. the locked door. It will use the private helper methods of `addTopGolden()`, `addBottomGolden()`, `addLeftGolden` and `addRightGolden`.
 
 ### Hallways
-**Note that the position of a hallway will be the same as the position of its left-bottom corner wall!**
+The direction of a hallway should either be horizon or vertical:
+* horizon: <br>
+  ######## <br>
+  XXXXXXXX <br>
+  P#######
+* vertical: <br>
+  #X# <br>
+  #X# <br>
+  #X# <br>
+  #X# <br>
+  #X# <br>
+  PX# <br>
+
+**Note that the position of a hallway will be the same as the position of its left-bottom corner wall labelled as 'P'!**
 
 #### Draw a Hallway in the World
 1. `public void draw()`
@@ -293,3 +380,46 @@ As for this given turning hallway, this method will check whether the position o
 
 6. `public boolean closeDDDSSS()` 'DDD' refers to 'direction', which can be left, right, top and bottom; 'SSS' refers to the 'shape' of this turning hallway. The implementation of this set of methods are very similar. Take `closeTopL()` as an example:
 * It will turn the top floor into a wall to make top of this turning wall encapsulated. 
+
+## Algorithm - Part II: Iteractivity
+The algorithms of implementing UI elements and avatars movements will be interpreted in this part.
+
+### Avatar
+An avatar has three main behaviours:
+* Placed within the map
+* Moving around within the map
+* See if it meets an encounter
+
+1. `public void randomlyPlace` - With the seed used to generated the pseudorandom map, a random position will be determined iteratively until the calculated random position is a floor. Then, place the floor at that position with this avatar.
+2. `public boolean moveDDD` - 'DDD' refers to 'direction' which can be left, right, up and down. This set of methods has a smiliar logic:
+* Get the position of this avatar
+* Check if the position that the avatar will move into is a wall or a golden-colored wall. If it is either of two, return directly
+* Or, change the appearance of map by setting avatar's original position to floor and position to be moved into to avatar's appearance.
+* Update new position of the avatar.
+3. `public boolean isMeet(Encounter encounter)` - Check if the encounter has already met the avatar before by calling `encounter.met()` and if the encounter and the avatar are in the same position.
+
+### Encounter
+1. `public void randomlyPlace` - With the seed used to generated the pseudorandom map, a random position will be determined iteratively until the calculated random position is a floor. Then, place the floor at that position with this encounter.
+2. `public void hasMet()` - If an avatar has met with the encounter, change the state of encounter (instance variable `met`) to be true.
+
+### Menu
+An menu object will display two interfaces:
+* The start menu displayed first to instruct user to type in a letter to start the game
+* An interface telling user to add a seed used to generate a psuedorandom map.
+
+In constructor, the basic setting, including size of and the background color of the interface, for drawing an interface will be set first. Then, two methods will be called to display two interfaces.
+
+1. `public void display() ` This method will display the start menu. All methods are called based on the `StdDraw` library. As the constructor has set the background color to black, color pen, font and position will be set to write corresponding texts and show them off on the interface
+2. `public void displayAddingSeed` This method will firstly clear the previous start menu, and then set new color pen, font and position to write correspoinding texts. Note that this interface should show the seed value that the user has entered so far.
+
+### Small New Game
+An small new game object will:
+* Display a prompt page for users to tell them what happen when the avatar meets an encounter
+* Display the interface of small game, add movement for avatar in this small game and end this small game if the avatar has picked up 10 flowers.
+
+1. `private void displayPromt()` Using `StdDraw` library, clear the previous interface and set font and pen color. Draw the texts in the middle place of the interface and show them off. Let texts pause 1000 ms.
+2. `public void display()`
+* Show the prompt page for calling `displayPromt()` for a while.
+* Draw a small room in the middle of the interface and draw an avatar in the random place of the drawn room.
+* Draw 10 flowers randomly within the drawn room.
+* Monitoring the movement of the avatar and if all flowers are picked up. If all have picked up, end this small game.

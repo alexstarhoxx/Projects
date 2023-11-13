@@ -8,6 +8,7 @@ import java.awt.Font;
 /**
  * This class is used to generate the fronted menu. It does not implement
  * interactivity for users.
+ * @author Alex Ho
  */
 public class Menu {
     private int width;
